@@ -18,3 +18,7 @@ build/
 # OS files
 .DS_Store
 *.log
+
+# vim files
+*.swp
+*.swo
