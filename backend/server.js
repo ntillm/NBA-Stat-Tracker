@@ -31,3 +31,43 @@ app.get('/api/leagues', async (req, res) =>  {
     res.status(500).json({ error: 'Failed to fetch leagues' })
   }
 })
+
+app.get('/api/players/search', async (req, res) => {
+  const playerName = req.query.search || 'james'
+  try {
+    const response = await fetch(`https://v2.nba.api-sports.io/players?search=${playerName}`, {
+      method: 'GET',
+      headers: {
+       'x-rapidapi-host': 'v2.nba.api-sports.io',
+       'x-rapidapi-key': apiKey
+      }
+    })
+    
+    const data = await response.json()
+    res.json(data)
+  
+  } catch(error) {
+    console.error('Error fetching players', error)
+    res.status(500).json({ error: 'Failed to fetch player'})
+  }
+})
+
+app.get('/api/players/:id', async (req, res) => {
+  const playerId = req.params.id
+  try {
+    const response = await fetch(`https://v2.nba.api-sports.io/players?id=${playerId}`, {
+      method: 'Get', 
+      headers: {
+        'x-rapidapi-host': 'v2.nba.api-sports.io',
+        'x-rapidapi-key' : apiKey
+      }
+    })
+    
+    const data = await response.json()
+    res.json(data)
+
+  } catch(error) {
+    console.error('Error fetching player ID', error)
+    res.status(500).json({ error: 'Failed to fetch player ID' })
+  }
+})
