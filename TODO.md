@@ -7,8 +7,8 @@
 - [x] Create health check endpoint
 
 ## Phase 2: Sports API Integration (Next)
-- [ ] Research sports data APIs (SportsData.io, ESPN, The Sports DB)
-- [ ] Sign up for API and get key
+- [x] Research sports data APIs (SportsData.io, ESPN, The Sports DB)
+- [x] Sign up for API and get key
 - [ ] Create `/api/players/search` endpoint
 - [ ] Test fetching player data from API
 - [ ] Display one player's basic info in app
