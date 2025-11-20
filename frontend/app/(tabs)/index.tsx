@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 
 export default function Index() {
-  const [status, setStatus] = useState('Loading...');
+  const [player, setPlayer] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://192.168.0.47:3001/api/health')
+    fetch('http://192.168.0.47:3001/api/players/165')
       .then(response => response.json())
       .then(data => {
-        setStatus(data.message);
+        setPlayer(data.response[0]);
         setLoading(false);
       })
       .catch(error => {
-        setStatus('Error connecting to backend');
         setLoading(false);
         console.error(error);
       });
@@ -24,8 +23,10 @@ export default function Index() {
       <Text style={styles.title}>Player Stats Tracker</Text>
       {loading ? (
         <ActivityIndicator size="large" />
+      ) : player ?(
+        <Text> {player.firstname} {player.lastname}</Text>
       ) : (
-        <Text style={styles.status}>{status}</Text>
+        <Text> No Player Found </Text>
       )}
     </View>
   );

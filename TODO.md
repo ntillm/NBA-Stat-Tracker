@@ -9,9 +9,9 @@
 ## Phase 2: Sports API Integration (Next)
 - [x] Research sports data APIs (SportsData.io, ESPN, The Sports DB)
 - [x] Sign up for API and get key
-- [ ] Create `/api/players/search` endpoint
-- [ ] Test fetching player data from API
-- [ ] Display one player's basic info in app
+- [x] Create `/api/players/search` endpoint
+- [x] Test fetching player data from API
+- [x] Display one player's basic info in app
 
 ## Phase 3: Player Search & Display
 - [ ] Build search UI in frontend
