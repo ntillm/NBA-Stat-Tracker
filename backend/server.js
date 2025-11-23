@@ -33,7 +33,7 @@ app.get('/api/leagues', async (req, res) =>  {
 })
 
 app.get('/api/players/search', async (req, res) => {
-  const playerName = req.query.search || 'james'
+  const playerName = req.query.search || 'james' 
   console.log(`Backend received playerName ${playerName}`)
   try {
     const response = await fetch(`https://v2.nba.api-sports.io/players?search=${playerName}`, {

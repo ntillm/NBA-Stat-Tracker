@@ -33,13 +33,13 @@ export default function Index() {
     const playerName = String(name);
     if (!playerName.trim()) {
       setSearchResults([]);
-  return;
+    return;
     }
     setSearchLoading(true);
 
     try {
       const encodeName = encodeURI(playerName.trim())
-      const response = await fetch(`http://192.168.0.47:3001/api/players/search?search${encodeName}`);
+      const response = await fetch(`http://192.168.0.47:3001/api/players/search?search=${encodeName}`);
       
       if (!response.ok) {
         throw new Error(`Response Status: ${response.status}`);
