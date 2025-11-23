@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, Text, View, ActivityIndicator, TextInput, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, ActivityIndicator, TextInput, FlatList, TouchableOpacity } from 'react-native';
 
 export default function Index() {
   const [player, setPlayer] = useState(null);
@@ -21,6 +21,7 @@ export default function Index() {
       });
   }, []); */
   
+
   useEffect(() => {
     const debounceDelay = setTimeout(() => {
       searchPlayers(searchTerm)
@@ -28,6 +29,11 @@ export default function Index() {
 
     return () => clearTimeout(debounceDelay);
   }, [searchTerm])
+
+  const handlePlayerPress = (player) => {
+    const playerId = player.id
+    console.log(`Player pressed: ${player.firstname} ${player.lastname} ID: ${playerId}`)
+  }
 
   const searchPlayers = async(name) => {
     const playerName = String(name);
@@ -58,14 +64,19 @@ export default function Index() {
   };
 
   const renderPlayer = ({item}) => (
-    <View style={styles.playerCard}>
-      <Text style={styles.playerName}>
+    <TouchableOpacity 
+      style={styles.playerCardTouchable}
+      onPress={() => handlePlayerPress(item)}
+    >
+      <View style={styles.playerCard}>
+        <Text style={styles.playerName}>
         {item.firstname} {item.lastname}
-      </Text>
-      <Text style={styles.playerDetails}>
+        </Text>
+        <Text style={styles.playerDetails}>
         ID: {item.id}
-      </Text>
-    </View>
+        </Text>
+      </View>
+    </TouchableOpacity>
   )
   
   return (
@@ -146,5 +157,11 @@ const styles = StyleSheet.create({
     playerDetails: {
         fontSize: 14,
         color: '#666', // Muted color for secondary detail (like ID or team)
+    },
+    playerCardTouchable: {
+        // Ensures the touch area spans the full width of the FlatList container
+        width: '100%', 
+        // We'll keep the vertical margin on this wrapper to control spacing between cards
+        marginVertical: 4, 
     },
 });

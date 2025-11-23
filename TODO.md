@@ -14,7 +14,7 @@
 - [x] Display one player's basic info in app
 
 ## Phase 3: Player Search & Display
-- [ ] Build search UI in frontend
+- [x] Build search UI in frontend
 - [ ] Create player card component
 - [ ] Display player photo, name, team, position
 - [ ] Handle loading states and errors

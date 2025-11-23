@@ -1,10 +1,28 @@
 const express = require('express')
 const cors = require('cors')
+const { Pool } = require('pg')
 const app = express()
-app.use(cors())
 const port = 3001
 require('dotenv').config()
 const apiKey = process.env.API_FOOTBALL_KEY
+const connectionString = process.env.DATABASE_URL
+app.use(cors())
+
+
+const pool = new Pool({
+  connectionString: connectionString,
+  ssl: {
+    rejectUnauthorized: false
+  }
+})
+
+pool.query('SELECT NOW()', (err,res) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+  } else {
+    console.log('Database connected successfully at:', res.rows[0].now)
+  }
+})
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running!' })
